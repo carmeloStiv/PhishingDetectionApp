@@ -1,0 +1,132 @@
+url,label,category,note
+https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&flowName=GlifWebSignIn,legit,long_signin,real Google sign-in
+https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&redirect_uri=https%3A%2F%2Fwww.office.com%2Flandingv2&response_type=code%20id_token&scope=openid%20profile,legit,long_signin,real Microsoft sign-in
+https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary,legit,long_signin,
+https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome,legit,long_signin,
+https://secure.bankofamerica.com/login/sign-in/signOnV2Screen.go,legit,long_signin,
+https://secure.login.gov/,legit,auth_words,US government SSO
+https://account.microsoft.com/account/manage-my-account,legit,auth_words,
+https://id.atlassian.com/login?continue=https%3A%2F%2Fstart.atlassian.com%2F,legit,long_signin,
+https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fsecurity,legit,long_signin,
+https://www.amazon.co.uk/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.co.uk%2F,legit,long_signin,
+https://appleid.apple.com/account/manage,legit,long_signin,
+https://www.netflix.com/login,legit,long_signin,
+https://www.chase.com/personal/online-banking/login,legit,long_signin,
+https://online.hsbc.co.uk/,legit,bank,
+https://www.barclays.co.uk/digital-banking/,legit,bank,
+https://www.wellsfargo.com/,legit,bank,
+https://www.gov.uk/log-in-register-hmrc-online-services,legit,government,
+https://www.irs.gov/refunds,legit,government,
+https://my.gov.au/,legit,government,
+https://www.royalmail.com/track-your-item,legit,delivery,
+https://www.dhl.com/gb-en/home/tracking.html?tracking-id=1234567890,legit,delivery,
+https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223197428490,legit,delivery,
+https://www.fedex.com/fedextrack/?trknbr=123456789012,legit,delivery,
+https://docs.python.org/3/library/urllib.parse.html,legit,ordinary,
+https://en.wikipedia.org/wiki/Phishing,legit,ordinary,
+https://www.bbc.co.uk/news/technology,legit,ordinary,
+https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster,legit,ordinary,
+https://www.nytimes.com/section/technology,legit,ordinary,
+https://abc.xyz/investor/,legit,unusual_tld,Alphabet on .xyz
+https://blog.google/technology/safety-security/,legit,unusual_tld,brand TLD
+https://www.bücher.de/,legit,idn,legitimate German IDN
+https://münchen.de/,legit,idn,legitimate German IDN
+https://www.paypal-community.com/t5/About-Payments/bd-p/payments,legit,brand_in_name,official PayPal community
+https://netflixtechblog.com/,legit,brand_in_name,official Netflix engineering blog
+https://www.microsoftstore.com/,legit,brand_in_name,
+https://amazon.jobs/en/,legit,brand_in_name,
+https://www.appleinsider.com/,legit,brand_in_name,independent news site
+https://steamdb.info/app/730/,legit,brand_in_name,independent Steam database
+https://www.orangetheory.com/en-us/,legit,brand_in_name,unrelated business with brand-like word
+https://www.applebees.com/en,legit,brand_in_name,
+https://www.targetmarketingmag.com/,legit,brand_in_name,
+https://www.chasebrass.com/,legit,brand_in_name,
+https://googleprojectzero.blogspot.com/,legit,user_content,official Google blog on Blogspot
+https://pages.github.com/,legit,user_content,
+https://kubernetes.github.io/ingress-nginx/,legit,user_content,project docs on github.io
+https://docs.google.com/document/d/1bxk4/edit,legit,user_content,ordinary shared document
+https://developers.cloudflare.com/pages/,legit,ordinary,
+https://www.dropbox.com/s/abc123/report.pdf?dl=0,legit,file_share,
+https://email.mg.example-newsletter.com/c/eJxVjDsOwyAQRE9DbcHysQsXOUi0LAtGwsbCcP_QJM1o9N7M-GEsOQCx6DuwksAaAQcewMkptSSDlBKyN2L9y9jxeaXWEucm1Fbx7ufHdexFR9mYB-rI6f08Pjpx7ZU0xZqEWu_3xHf75ZqeDTnLIvsCO0otDQ,ambiguous,tracking,opaque marketing tracking link on unknown domain
+https://click.e.mozilla.org/?qs=8b2d1f0c3a4e5b6d7c8a9f,legit,tracking,tracking link on established domain
+https://www.linkedin.com/comm/jobs/view/3812345678?trk=eml-email_job_alert&midToken=AQH&otpToken=MTQwMzE4,legit,tracking,
+https://www.google.com/url?q=https://www.python.org/&sa=D&source=docs,legit,redirect,Google redirect to a known site
+https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.bbc.co.uk%2Fnews&h=AT0abc,legit,redirect,
+https://mailchi.mp/acme/spring-newsletter?e=0a1b2c3d4e,legit,user_content,newsletter archive on Mailchimp
+https://unsubscribe.sendgrid.net/wf/unsubscribe?upn=abc&email=jane.doe@example.org,ambiguous,email_in_url,unsubscribe link with address
+https://bit.ly/3xYzAbC,ambiguous,shortener,destination unknown
+https://tinyurl.com/2p8w3x9k,ambiguous,shortener,destination unknown
+http://192.168.1.1/admin/login.asp,ambiguous,ip,home router admin page
+https://www.oakridgedentalcare.com/,ambiguous,unknown_site,plausible small-business site with no reputation data
+https://riverbend-hoa.org/login,ambiguous,unknown_site,small site with a login page
+https://zoom.us/j/91234567890?pwd=Q2xhc3NpY1pvb20,legit,ordinary,meeting link
+https://teams.microsoft.com/l/meetup-join/19%3ameeting_NjY0ZmQ%40thread.v2/0?context=%7b%22Tid%22%3a%2272f988bf%22%7d,legit,long_signin,heavily encoded Teams link
+https://www.dropbox.com/scl/fi/a1b2c3d4e5/Q3-budget.xlsx?rlkey=abcdef123456&dl=0,legit,file_share,
+https://drive.google.com/file/d/1A2b3C4d5E6f7G8h9I0j/view?usp=sharing,legit,file_share,
+https://www.coinbase.com/signin,legit,long_signin,
+https://www.binance.com/en/my/security,legit,auth_words,
+https://support.apple.com/en-us/102568,legit,auth_words,
+https://myaccount.google.com/security-checkup,legit,auth_words,
+https://secure.ssa.gov/RIL/SiView.action,legit,government,
+https://www.service.nsw.gov.au/transaction/renew-driver-licence,legit,government,
+http://paypa1.com/signin,phish,typosquat,digit substitution
+https://www.arnazon.com/ap/signin,phish,typosquat,rn for m
+https://micros0ft-support.com/account/verify,phish,typosquat,
+https://gooogle-accounts.com/signin,phish,typosquat,
+https://netfIix-billing.com/update,phish,typosquat,capital I for l (lower-cased by browsers to netfiix)
+https://faceboook.com.login-secure.co/,phish,typosquat,
+https://wellsfarg0.com/,phish,typosquat,
+https://www.instagrarn.com/accounts/login/,phish,typosquat,
+https://dropbbox.com/s/shared,phish,typosquat,
+https://linkedln.com/checkpoint/challenge,phish,typosquat,l for i
+https://paypal.com.account-security-check.info/webscr?cmd=_login,phish,subdomain_trick,real domain as sub-domain
+https://www.apple.com.id-verify.support/signin,phish,subdomain_trick,
+https://accounts.google.com.session-restore.xyz/ServiceLogin,phish,subdomain_trick,
+https://login.microsoftonline.com.office-auth.top/common/oauth2,phish,subdomain_trick,
+https://secure-chase.com.online-banking-verify.net/logon,phish,subdomain_trick,
+https://amazon-prime-renewal.com/billing,phish,combosquat,
+https://paypal-resolution-center.com/case/8841,phish,combosquat,
+https://netflix-account-update.net/,phish,combosquat,
+https://dhl-parcel-redelivery.com/track?id=GB8841,phish,combosquat,
+https://royalmail-redelivery-fee.com/,phish,combosquat,
+https://usps-package-hold.com/reschedule,phish,combosquat,
+https://hsbc-secure-online.com/login,phish,combosquat,
+https://coinbase-wallet-verify.io/connect,phish,combosquat,
+https://metamask-restore.app/seed,phish,combosquat,
+https://office365-password-expiry.com/renew,phish,combosquat,
+https://xn--pypal-4ve.com/signin,phish,homograph,Cyrillic a
+https://xn--80ak6aa92e.com/,phish,homograph,all-Cyrillic apple look-alike
+https://xn--mcrosoft-c2a.com/login,phish,homograph,dotless/accented i
+http://185.220.101.45/paypal/login.php,phish,ip,
+http://45.9.148.22:8080/office365/index.html,phish,ip,
+http://0x5bd4c821/secure/login,phish,ip,hex-encoded IP
+https://www.paypal.com@secure-login.example-host.ru/signin,phish,userinfo,@ trick
+https://accounts.google.com:signin@203.0.113.50/,phish,userinfo,
+https://netflix-billing-update.web.app/,phish,user_content,brand on Firebase hosting
+https://microsoft-login-portal.pages.dev/,phish,user_content,
+https://sites.google.com/view/paypal-account-verification/home,phish,user_content,
+https://chase-secure-verify.weebly.com/,phish,user_content,
+https://dhl-tracking-8841.vercel.app/,phish,user_content,
+https://storage.googleapis.com/acct-notify/office365/login.html,phish,user_content,
+https://docs.google.com/forms/d/e/1FAIpQLSc-outlook-webmail-upgrade/viewform,phish,user_content,form asking for mailbox password
+https://ipfs.io/ipfs/bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi/login.html,phish,user_content,
+https://oakwoodplumbing.co.uk/wp-includes/js/paypal/signin.php,phish,compromised_site,kit in WordPress folder
+https://stmarys-school.org/wp-content/uploads/2024/office365/login.html?email=victim@company.com,phish,compromised_site,
+https://greenleaf-cafe.com/.well-known/chase/logon.php,phish,compromised_site,
+https://www.google.com/url?q=https://secure-wallet-verify.top/connect&sa=D,phish,redirect,open redirect via Google to bad site
+https://bit.ly/paypal-verify-acct,ambiguous,shortener,shortener to unknown destination
+https://secure-verify-account-login.top/,phish,generic,no brand - generic security wording
+https://account-verification-required.xyz/update/billing,phish,generic,
+https://mailbox-quota-upgrade.click/webmail/login?user=jane@company.com,phish,generic,
+https://xk2-portal.top/a8f3,phish,no_signal,random domain with no lexical clue
+https://lhrt-dgs.com/c/9d2f,phish,no_signal,
+https://brightwave-solutions.net/,phish,no_signal,ordinary-looking fresh domain
+https://secure.payment-gateway-eu.com/checkout/session/4421,phish,no_signal,looks like a payment processor
+https://auth.sso-company-portal.com/saml/login,phish,generic,fake SSO portal
+https://support-ticket-microsoft.com/case/1182,phish,combosquat,tech-support scam
+https://appleid.apple.com-unlock.id/,phish,subdomain_trick,
+https://steamcomrnunity.com/tradeoffer/new/?partner=1182,phish,typosquat,
+https://discord-nitro-gift.com/claim,phish,combosquat,
+https://binance-airdrop-claim.org/connect-wallet,phish,combosquat,
+https://irs-tax-refund-claim.com/form,phish,combosquat,government impersonation
+https://hmrc-tax-rebate.co/claim,phish,combosquat,

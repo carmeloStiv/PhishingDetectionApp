@@ -1,0 +1,262 @@
+[
+ {
+  "label": "legit",
+  "category": "transactional",
+  "text": "Hi Priya,\n\nYour Amazon order #204-8841923-1120345 has shipped and will arrive Tuesday. You can track your package any time at https://www.amazon.co.uk/gp/your-account/order-history\n\nThanks for shopping with us."
+ },
+ {
+  "label": "legit",
+  "category": "password_reset",
+  "text": "Someone (hopefully you) requested a password reset for your GitHub account. Click the link below to choose a new password. If you didn't request this, you can ignore this email.\n\nhttps://github.com/password_reset/9f3b2c1d8e7a6f5b4c3d2e1f"
+ },
+ {
+  "label": "legit",
+  "category": "security_alert",
+  "text": "From: Google <no-reply@accounts.google.com>\nSubject: Security alert\n\nNew sign-in on Windows\n\nWe noticed a new sign-in to your Google Account on a Windows device. If this was you, you don't need to do anything. If not, we'll help you secure your account.\n\nCheck activity: https://myaccount.google.com/notifications"
+ },
+ {
+  "label": "legit",
+  "category": "work",
+  "text": "Hi team, the quarterly planning meeting is moved to 3pm tomorrow in room 4B. Agenda is in the shared drive. Thanks, Sam"
+ },
+ {
+  "label": "legit",
+  "category": "work",
+  "text": "Hi Dana, attached is the Q3 budget spreadsheet (Q3-budget.xlsx) we discussed. Could you review the marketing line by Friday? No rush before then. Cheers, Tom"
+ },
+ {
+  "label": "legit",
+  "category": "work",
+  "text": "Reminder: open enrollment for benefits closes on November 30. Log in to Workday to review your elections: https://www.myworkday.com/acme/d/home.htmld\n\nQuestions? Contact HR at ext. 4410."
+ },
+ {
+  "label": "legit",
+  "category": "newsletter",
+  "text": "This week in Python: PEP 750 accepted, a deep dive on free-threading, and conference CFPs closing soon. Read more at https://www.python.org/blogs/\n\nYou are receiving this because you subscribed. Unsubscribe: https://mail.python.org/mailman3/lists/"
+ },
+ {
+  "label": "legit",
+  "category": "2fa",
+  "text": "Your Microsoft verification code is 482913. Don't share this code with anyone. Microsoft will never call you to ask for it."
+ },
+ {
+  "label": "legit",
+  "category": "bank_notice",
+  "text": "From: Barclays <noreply@barclays.co.uk>\nSubject: Your statement is ready\n\nDear Mr Okafor,\n\nYour latest statement is now available in Online Banking. For your security we never include links to log in from emails - please open the Barclays app or type barclays.co.uk into your browser.\n\nBarclays Bank UK PLC"
+ },
+ {
+  "label": "legit",
+  "category": "invoice",
+  "text": "Hi Laura,\n\nPlease find attached invoice INV-2291 for October's design work (invoice-2291.pdf). Payment terms are 30 days as usual, to the same account as before.\n\nThanks,\nMarco"
+ },
+ {
+  "label": "legit",
+  "category": "delivery",
+  "text": "DPD: Your parcel from ASOS will be delivered today between 13:12 and 14:12 by your driver Mark. Track or change delivery in the DPD app or at https://www.dpd.co.uk/apps/tracking/?reference=15501234567890"
+ },
+ {
+  "label": "legit",
+  "category": "personal",
+  "text": "Hey! Are you free for dinner Saturday? Thinking that new ramen place on 5th. Let me know x"
+ },
+ {
+  "label": "legit",
+  "category": "account_notice",
+  "text": "From: Netflix <info@account.netflix.com>\nSubject: We've updated our prices\n\nHi Alex,\n\nYour monthly price will change to £12.99 on your next billing date, 4 December. You can review your plan at any time: https://www.netflix.com/youraccount\n\nThe Netflix team"
+ },
+ {
+  "label": "legit",
+  "category": "verification",
+  "text": "Welcome to Notion! Please confirm your email address to finish setting up your workspace: https://www.notion.so/confirm-email?token=7f3a9c2b1d\n\nIf you didn't sign up, you can ignore this message."
+ },
+ {
+  "label": "legit",
+  "category": "calendar",
+  "text": "Invitation: Design review @ Thu 14 Nov 2pm - 3pm (GMT). Join with Google Meet: https://meet.google.com/abc-defg-hij\n\nReply for jordan@acme.io: Yes - Maybe - No"
+ },
+ {
+  "label": "legit",
+  "category": "support",
+  "text": "Hi, thanks for contacting Acme Support. Your ticket #48211 has been received and we aim to reply within 24 hours. You can view the ticket at https://acme.zendesk.com/hc/en-us/requests/48211"
+ },
+ {
+  "label": "legit",
+  "category": "it_notice",
+  "text": "IT notice: the VPN will be unavailable Saturday 02:00-04:00 for maintenance. No action is required. If you have problems on Monday, contact the service desk on 5-1234."
+ },
+ {
+  "label": "legit",
+  "category": "urgent_work",
+  "text": "URGENT: the client demo is in 30 minutes and the staging server is down. Can someone restart the api container immediately? I'm locked out of the console. - Raj"
+ },
+ {
+  "label": "legit",
+  "category": "payment_receipt",
+  "text": "From: PayPal <service@paypal.co.uk>\nSubject: Receipt for your payment to Spotify AB\n\nHello Jamie Lee,\n\nYou sent a payment of £10.99 GBP to Spotify AB. It may take a few minutes for this transaction to appear in your account.\n\nView the transaction: https://www.paypal.com/myaccount/transactions/details/4X1234567A\n\nPayPal"
+ },
+ {
+  "label": "legit",
+  "category": "school",
+  "text": "Dear parents, a reminder that the school trip consent forms are due this Friday. Payment of £12 can be made via ParentPay as usual. Thank you, Mrs Whitfield"
+ },
+ {
+  "label": "legit",
+  "category": "password_expiry",
+  "text": "From: IT Service Desk <servicedesk@contoso.com>\nSubject: Password expires in 5 days\n\nHi Maria,\n\nYour network password expires in 5 days. Press Ctrl+Alt+Del on your work laptop and choose 'Change a password'. We will never ask you to change it through a link.\n\nService Desk"
+ },
+ {
+  "label": "legit",
+  "category": "recruiter",
+  "text": "Hi Chen, I came across your profile on LinkedIn and wanted to share a senior backend role at a fintech in Leeds. Happy to send the spec if you're interested - you can also see it here: https://www.linkedin.com/jobs/view/3812345678"
+ },
+ {
+  "label": "ambiguous",
+  "category": "unknown_vendor",
+  "text": "Hello, your appointment at Oakridge Dental Care is confirmed for 21 Nov at 10:30. To reschedule visit https://www.oakridgedentalcare.com/appointments or call 01632 960123."
+ },
+ {
+  "label": "ambiguous",
+  "category": "short",
+  "text": "ok see you then"
+ },
+ {
+  "label": "ambiguous",
+  "category": "shortener",
+  "text": "Great talk yesterday! Slides are here: https://bit.ly/3xYzAbC"
+ },
+ {
+  "label": "phish",
+  "category": "account_suspension",
+  "text": "Dear Customer,\n\nYour PayPal account has been limited due to unusual activity. You must verify your account within 24 hours or it will be permanently closed.\n\nVerify now: http://paypal-secure.account-verify.xyz/login\n\nPayPal Security Team"
+ },
+ {
+  "label": "phish",
+  "category": "parcel_sms",
+  "text": "Royal Mail: your parcel could not be delivered due to an unpaid shipping fee of £1.45. Pay now to reschedule: https://royalmail-redelivery-fee.com/pay"
+ },
+ {
+  "label": "phish",
+  "category": "parcel_sms",
+  "text": "USPS: Your package is on hold due to an incomplete address. Update within 12 hours: https://usps.pkg-hold-update.top/us"
+ },
+ {
+  "label": "phish",
+  "category": "bec_giftcard",
+  "text": "Are you at your desk? I'm in a meeting and can't talk. I need you to buy 5 Apple gift cards ($100 each) for a client right away and send me the codes. Keep this between us for now. - David (CEO)"
+ },
+ {
+  "label": "phish",
+  "category": "bec_bank_change",
+  "text": "Hi Accounts,\n\nPlease note our bank details have changed with immediate effect. Kindly update your records and send payment for the outstanding invoice INV-7781 to the new account today:\n\nSort code 20-44-91, Account 60123344\n\nRegards,\nHelen, Finance Dept"
+ },
+ {
+  "label": "phish",
+  "category": "m365_expiry",
+  "text": "From: Microsoft 365 <admin@office365-notify.com>\nSubject: Password expires today\n\nYour Office 365 password expires today. To keep the same password and avoid losing access to your mailbox, sign in below.\n\nKeep my password: https://office365-password-expiry.com/renew?user=you@company.com"
+ },
+ {
+  "label": "phish",
+  "category": "crypto_seed",
+  "text": "MetaMask: Due to a recent security upgrade, all wallets must be re-validated. Enter your 12-word recovery phrase to restore access to your funds: https://metamask-restore.app/seed  Failure to comply within 48 hours will result in permanent loss of assets."
+ },
+ {
+  "label": "phish",
+  "category": "tax_refund",
+  "text": "HMRC: You are eligible to receive a tax refund of £384.20. Claim your refund now by completing the secure form: https://hmrc-tax-rebate.co/claim"
+ },
+ {
+  "label": "phish",
+  "category": "prize",
+  "text": "Congratulations! Your email address has won 1.5 million USD in the Google International Lottery. To claim your prize, reply with your full name, address, bank details and a copy of your ID. Processing fee applies."
+ },
+ {
+  "label": "phish",
+  "category": "html_attachment",
+  "text": "Dear user, you have received a secure voice message from +44 20 7946 0958. Duration 00:43. Open the attached file Voicemail_Play.html to listen. Your mailbox password is required to play the message."
+ },
+ {
+  "label": "phish",
+  "category": "sender_mismatch",
+  "text": "From: Apple Support <apple.support.team881@gmail.com>\nSubject: Your Apple ID has been locked\n\nDear Customer,\n\nYour Apple ID has been locked for security reasons. Verify your identity to unlock your account: https://appleid.apple.com-unlock.id/\n\nApple Support"
+ },
+ {
+  "label": "phish",
+  "category": "link_text_mismatch",
+  "text": "<p>Dear client,</p><p>We detected an unauthorized transaction on your Chase account. Please review it immediately:</p><p><a href=\"http://chase-review.online-secure-banking.net/logon\">https://www.chase.com/personal/secure/review</a></p>"
+ },
+ {
+  "label": "phish",
+  "category": "reply_to",
+  "text": "From: HSBC Online Banking <alerts@hsbc.co.uk>\nReply-To: hsbc.alerts.desk@outlook.com\nSubject: Action required: confirm your details\n\nDear valued customer,\n\nAs part of our security review you must confirm your online banking details. Reply to this email with your customer number, date of birth and the first and last digits of your security code."
+ },
+ {
+  "label": "phish",
+  "category": "callback",
+  "text": "Geek Squad: Your subscription has been auto-renewed for $399.99 and will be charged to your card today. If you did not authorize this charge, call our billing department immediately at +1 (808) 555-0142 to cancel and receive a refund."
+ },
+ {
+  "label": "phish",
+  "category": "job_scam",
+  "text": "Hello, we reviewed your resume and you have been selected for a remote data entry position paying $45/hour. No interview needed. To start, send your full name, address, bank account number for direct deposit and a copy of your driver's license to hr.onboarding.desk@gmail.com"
+ },
+ {
+  "label": "phish",
+  "category": "platform_form",
+  "text": "IT Helpdesk: Your mailbox has exceeded its storage quota and incoming mail will be blocked. To upgrade your mailbox, confirm your account here: https://docs.google.com/forms/d/e/1FAIpQLSc-outlook-webmail-upgrade/viewform"
+ },
+ {
+  "label": "phish",
+  "category": "compromised_site",
+  "text": "Your Netflix membership is on hold because we could not process your last payment. Update your payment method within 24 hours to keep watching: https://greenleaf-cafe.com/.well-known/netflix/billing.php"
+ },
+ {
+  "label": "phish",
+  "category": "no_keyword",
+  "text": "Hi, I shared the document with you, let me know what you think: https://xk2-portal.top/a8f3"
+ },
+ {
+  "label": "phish",
+  "category": "invoice_lure",
+  "text": "Please see the attached invoice INV_88213.zip for your recent order. Your card will be charged $849.00 today unless you dispute the payment. Open the attachment to view details and cancel."
+ },
+ {
+  "label": "phish",
+  "category": "account_suspension",
+  "text": "Your Instagram account has been reported for copyright violation and will be deleted within 24 hours. If you think this is a mistake, appeal here: https://instagram-copyright-appeal.com/form"
+ },
+ {
+  "label": "phish",
+  "category": "bank_sms",
+  "text": "Santander: A new payee was added to your account. If this was NOT you, cancel it now at https://santander-payee-cancel.com"
+ },
+ {
+  "label": "phish",
+  "category": "toll_sms",
+  "text": "E-ZPass: you have an unpaid toll of $4.15. To avoid a late fee of $50, pay now at https://ezpass-toll-payment.info/pay"
+ },
+ {
+  "label": "phish",
+  "category": "webmail",
+  "text": "Dear e-mail user, your mailbox quota has been exceeded. Click here http://mailbox-quota-upgrade.click/webmail/login to re-validate your mailbox. Failure to re-validate will lead to deactivation of your account. System Administrator"
+ },
+ {
+  "label": "phish",
+  "category": "docusign",
+  "text": "DocuSign: You have a new document to review and sign: 'Remittance_Advice_Nov.pdf'. REVIEW DOCUMENT: https://docusign.document-review-portal.com/signing/8841  This link expires in 24 hours."
+ },
+ {
+  "label": "phish",
+  "category": "advance_fee",
+  "text": "I am Barrister James Okoro. My late client left an unclaimed fund of $8.5 million USD and I seek your consent to present you as next of kin. This transaction is strictly confidential. Reply with your full name and phone number for details."
+ },
+ {
+  "label": "phish",
+  "category": "whatsapp",
+  "text": "Hi mum, I dropped my phone down the toilet, this is my new number. Can you help me pay a bill today? I can't get into my banking app. I'll send you the bank details, need it urgently x"
+ },
+ {
+  "label": "phish",
+  "category": "sharepoint",
+  "text": "Jennifer Walsh shared a file with you: 'Salary Review 2025.xlsx'. This link will only work for you. Open: https://company-sharepoint.online-docs-view.com/s/salary-review  Sign in with your Microsoft account to view."
+ }
+]

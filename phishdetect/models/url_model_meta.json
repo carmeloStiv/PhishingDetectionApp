@@ -1,0 +1,80 @@
+{
+ "model": "HistGradientBoostingClassifier",
+ "sklearn_version": "1.9.1",
+ "trained_at": "2026-11-13T10:02:44+00:00",
+ "features": [
+  "host_len",
+  "path_len",
+  "query_len",
+  "n_subdomain_labels",
+  "n_host_hyphens",
+  "n_host_digits",
+  "host_digit_ratio",
+  "label_len",
+  "label_entropy",
+  "label_digit_ratio",
+  "label_vowel_ratio",
+  "label_max_consonant_run",
+  "longest_sub_label",
+  "is_ip",
+  "has_port",
+  "has_userinfo",
+  "is_idn",
+  "tld_len",
+  "tld_suspicious",
+  "tld_common",
+  "n_path_segments",
+  "max_path_seg_len",
+  "path_entropy",
+  "path_digit_ratio",
+  "n_params",
+  "n_pct",
+  "n_special",
+  "has_embedded_url",
+  "has_email_in_url",
+  "ext_php",
+  "ext_html",
+  "ext_exec",
+  "ext_doc",
+  "path_is_root",
+  "n_auth_words_host",
+  "n_auth_words_path",
+  "brand_in_host",
+  "brand_typo",
+  "brand_in_path",
+  "brand_embedded_domain",
+  "is_official_brand",
+  "is_user_content_platform",
+  "is_shortener",
+  "has_long_hex_token",
+  "has_wp_path",
+  "n_host_tokens",
+  "double_slash_path",
+  "has_tilde"
+ ],
+ "n_train": 85947,
+ "n_val": 18159,
+ "val_roc_auc": 0.9525,
+ "val_bands": {
+  "0.5": {
+   "recall": 0.8927,
+   "false_positive_rate": 0.1197,
+   "fpr_legit_pages_with_paths": 0.2304
+  },
+  "0.75": {
+   "recall": 0.8037,
+   "false_positive_rate": 0.0482,
+   "fpr_legit_pages_with_paths": 0.1037
+  },
+  "0.9": {
+   "recall": 0.6793,
+   "false_positive_rate": 0.0155,
+   "fpr_legit_pages_with_paths": 0.0383
+  },
+  "0.97": {
+   "recall": 0.5123,
+   "false_positive_rate": 0.0023,
+   "fpr_legit_pages_with_paths": 0.0047
+  }
+ }
+}

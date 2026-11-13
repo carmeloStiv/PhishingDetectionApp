@@ -1,0 +1,8 @@
+.git
+ml
+legacy
+tests
+docs
+var
+**/__pycache__
+.env

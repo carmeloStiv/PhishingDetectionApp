@@ -1,104 +1,63 @@
+"""Streamlit front-end (kept so an existing Streamlit deployment of this repository keeps working).
+
+    streamlit run PhishingApp.py
+
+It uses exactly the same detection engine as the main web application
+(`uvicorn server.app:app`). The main application is the recommended way to run
+the project: it adds the full interface, history, feedback, rate limiting and
+security headers, none of which Streamlit provides.
+"""
 import streamlit as st
-import pickle
-import numpy as np
-import re
 
-# -------------------------------
-# Optional: version for quick verification
-# -------------------------------
-MODEL_VERSION = "v2"
+from phishdetect.config import Settings
+from phishdetect.engine import Engine, InputError
 
-# -------------------------------
-# Cleaning function (same as training)
-# -------------------------------
-def clean_text(text):
-    text = str(text).lower()
-    # Normalize URLs and emails
-    text = re.sub(r'http\S+|www\S+', ' _url_ ', text)
-    text = re.sub(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b', ' _email_ ', text)
-    text = re.sub(r'\d+', '', text)
-    text = re.sub(r'[^a-zA-Z\s_]', ' ', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
+SOURCE = {"threat_intel": "Threat intelligence", "heuristic": "Rule", "page": "Page content", "ml": "ML model",
+          "reputation": "Reputation"}
 
-# -------------------------------
-# Load model and vectorizer
-# -------------------------------
-model = pickle.load(open('model.pkl', 'rb'))
-vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
-# -------------------------------
-# Streamlit config
-# -------------------------------
-st.set_page_config(page_title="Phishing Detection Tool", layout="centered")
-st.title("🔐 AI Phishing Detection Tool")
-st.markdown("Detect whether an email or URL is **phishing or legitimate** using NLP.")
-st.markdown(f"**Model version:** {MODEL_VERSION}")
-st.divider()
+@st.cache_resource
+def get_engine() -> Engine:
+    return Engine(Settings())
 
-# -------------------------------
-# Input area
-# -------------------------------
-text = st.text_area("📩 Enter email or URL:", height=150)
 
-if st.button("Analyse"):
-    if text:
-        # Clean + transform input
-        cleaned = clean_text(text)
-        text_vec = vectorizer.transform([cleaned])
+st.set_page_config(page_title="Phishing Detector", layout="centered")
+st.title("Phishing Detector")
+st.write("Paste a web address, an e-mail or a message. You get a verdict, the evidence behind it and what to do next.")
 
-        # Prediction probability
-        prob = model.predict_proba(text_vec)[0][1]
+text = st.text_area("Web address or message", height=160, max_chars=50_000,
+                    placeholder="https://example.com/login  or the full text of an e-mail")
+mode = st.radio("What are you checking?", ["auto", "url", "message"], horizontal=True,
+                format_func={"auto": "Auto-detect", "url": "Web address", "message": "E-mail or message"}.get)
 
-        # Explainability (top words)
-        feature_names = vectorizer.get_feature_names_out()
-        coefficients = model.coef_[0]
-        indices = text_vec.nonzero()[1]
-
-        word_scores = [(feature_names[i], coefficients[i]) for i in indices]
-        word_scores = sorted(word_scores, key=lambda x: abs(x[1]), reverse=True)[:20]
-
-        # -------------------------------
-        # Filter out neutral/common tokens (single or multi-word)
-        # -------------------------------
-        NEUTRAL_TOKENS = ["url", "com", "org", "www", "http", "https", "_email_"]
-        word_scores = [
-            (w, s) for w, s in word_scores
-            if not any(nt in w for nt in NEUTRAL_TOKENS)
-        ]
-
-        phishing_indicators = [w for w, s in word_scores if s > 0]
-
-        # -------------------------------
-        # Optional whitelist
-        # -------------------------------
-        SAFE_DOMAINS = ["linkedin.com", "github.com", "python.org"]
-        is_whitelisted = any(domain in text.lower() for domain in SAFE_DOMAINS)
-
-        # -------------------------------
-        # Determine classification
-        # -------------------------------
-        if is_whitelisted:
-            st.success(f"✅ Legitimate (whitelisted domain)")
-        else:
-            if prob > 0.85 and len(phishing_indicators) > 0:
-                st.error(f"⚠️ Phishing ({prob*100:.2f}%)")
-            elif prob > 0.6 and len(phishing_indicators) > 0:
-                st.warning(f"⚠️ Suspicious ({prob*100:.2f}%)")
-            else:
-                st.success(f"✅ Legitimate ({(1-prob)*100:.2f}%)")
-
-        # -------------------------------
-        # Display top indicators
-        # -------------------------------
-        st.subheader("🔍 Key Indicators")
-        if word_scores:
-            for word, score in word_scores:
-                if score > 0:
-                    st.write(f"🔴 {word} (phishing indicator)")
-                else:
-                    st.write(f"🟢 {word} (legitimate indicator)")
-        else:
-            st.write("No significant indicators detected.")
+if st.button("Analyse", type="primary"):
+    try:
+        with st.spinner("Analysing..."):
+            report = get_engine().analyse(text, mode)
+    except InputError as exc:
+        st.warning(str(exc))
     else:
-        st.warning("Please enter some text to analyse.")
+        show = {"likely_phishing": st.error, "suspicious": st.warning, "likely_safe": st.success, "unable_to_determine": st.info}
+        show[report["classification"]](f"**{report['label']}** - risk score {report['risk_score']}/100, "
+                                       f"confidence {report['confidence']['level']}")
+        st.caption(report["subject"])
+        st.write(report["summary"])
+        st.subheader("What to do")
+        for rec in report["recommendations"]:
+            st.markdown(f"- {rec}")
+        risk = [i for i in report["indicators"] if i["weight"] > 0]
+        other = [i for i in report["indicators"] if i["weight"] <= 0]
+        st.subheader(f"Risk indicators ({len(risk)})")
+        if not risk:
+            st.write("None found." if report["classification"] == "likely_safe"
+                     else "None found. That alone does not make it safe.")
+        for ind in risk + other:
+            if ind is (other[0] if other else None):
+                st.subheader("Supporting and neutral observations")
+            with st.expander(f"{ind['severity'].upper()} - {ind['title']}  [{SOURCE.get(ind['source'], ind['source'])}]"):
+                st.text(ind["evidence"])          # st.text never renders HTML or links
+                st.write(ind["explanation"])
+        with st.expander("Checks performed"):
+            st.table([{"Check": c["name"], "Status": c["status"], "Detail": c["detail"]} for c in report["checks"]])
+        st.download_button("Download report (JSON)", data=__import__("json").dumps(report, indent=2),
+                           file_name=f"phishing-report-{report['id'][:8]}.json", mime="application/json")

@@ -1,6 +1,11 @@
-streamlit
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
+# Runtime
+fastapi>=0.115,<1.0
+uvicorn>=0.30,<1.0
+httpx>=0.27,<1.0
+tldextract>=5.1,<6.0
+idna>=3.6
+numpy>=2.0
+joblib>=1.4
+# The bundled model is a scikit-learn pickle: keep the minor version it was trained with
+# (see phishdetect/models/url_model_meta.json) or retrain with `python -m ml.train_url_model`.
+scikit-learn==1.9.1
