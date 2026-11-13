@@ -1,0 +1,613 @@
+{
+ "url_test": {
+  "original": {
+   "n": 18257,
+   "tp": 0,
+   "fp": 0,
+   "fn": 10670,
+   "tn": 7587,
+   "accuracy": 0.4156,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0,
+   "false_negative_rate": 1.0,
+   "class_distribution": {
+    "phishing": {
+     "Legitimate": 10670
+    },
+    "legitimate": {
+     "Legitimate": 7587
+    }
+   }
+  },
+  "new": {
+   "n": 18257,
+   "tp": 7123,
+   "fp": 172,
+   "fn": 3547,
+   "tn": 7415,
+   "accuracy": 0.7963,
+   "precision": 0.9764,
+   "recall": 0.6676,
+   "f1": 0.793,
+   "false_positive_rate": 0.0227,
+   "false_negative_rate": 0.3324,
+   "class_distribution": {
+    "phishing": {
+     "Unable to Determine": 3499,
+     "Likely Phishing": 2040,
+     "Suspicious": 5083,
+     "Likely Safe": 48
+    },
+    "legitimate": {
+     "Likely Safe": 4768,
+     "Suspicious": 168,
+     "Unable to Determine": 2647,
+     "Likely Phishing": 4
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.0045,
+   "phishing_called_likely_phishing_rate": 0.1912,
+   "legit_called_likely_phishing_rate": 0.0005,
+   "abstention_rate": 0.3366
+  }
+ },
+ "url_test / domain NOT in popularity list": {
+  "original": {
+   "n": 13408,
+   "tp": 0,
+   "fp": 0,
+   "fn": 10592,
+   "tn": 2816,
+   "accuracy": 0.21,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0,
+   "false_negative_rate": 1.0,
+   "class_distribution": {
+    "phishing": {
+     "Legitimate": 10592
+    },
+    "legitimate": {
+     "Legitimate": 2816
+    }
+   }
+  },
+  "new": {
+   "n": 13408,
+   "tp": 7093,
+   "fp": 169,
+   "fn": 3499,
+   "tn": 2647,
+   "accuracy": 0.7264,
+   "precision": 0.9767,
+   "recall": 0.6697,
+   "f1": 0.7946,
+   "false_positive_rate": 0.06,
+   "false_negative_rate": 0.3303,
+   "class_distribution": {
+    "phishing": {
+     "Unable to Determine": 3499,
+     "Likely Phishing": 2040,
+     "Suspicious": 5053
+    },
+    "legitimate": {
+     "Suspicious": 165,
+     "Unable to Determine": 2647,
+     "Likely Phishing": 4
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.0,
+   "phishing_called_likely_phishing_rate": 0.1926,
+   "legit_called_likely_phishing_rate": 0.0014,
+   "abstention_rate": 0.4584
+  }
+ },
+ "url_test / domain in popularity list": {
+  "original": {
+   "n": 4849,
+   "tp": 0,
+   "fp": 0,
+   "fn": 78,
+   "tn": 4771,
+   "accuracy": 0.9839,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0,
+   "false_negative_rate": 1.0,
+   "class_distribution": {
+    "phishing": {
+     "Legitimate": 78
+    },
+    "legitimate": {
+     "Legitimate": 4771
+    }
+   }
+  },
+  "new": {
+   "n": 4849,
+   "tp": 30,
+   "fp": 3,
+   "fn": 48,
+   "tn": 4768,
+   "accuracy": 0.9895,
+   "precision": 0.9091,
+   "recall": 0.3846,
+   "f1": 0.5405,
+   "false_positive_rate": 0.0006,
+   "false_negative_rate": 0.6154,
+   "class_distribution": {
+    "phishing": {
+     "Likely Safe": 48,
+     "Suspicious": 30
+    },
+    "legitimate": {
+     "Likely Safe": 4768,
+     "Suspicious": 3
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.6154,
+   "phishing_called_likely_phishing_rate": 0.0,
+   "legit_called_likely_phishing_rate": 0.0,
+   "abstention_rate": 0.0
+  }
+ },
+ "external OpenPhish feed (phishing only)": {
+  "original": {
+   "n": 259,
+   "tp": 0,
+   "fp": 0,
+   "fn": 259,
+   "tn": 0,
+   "accuracy": 0.0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": null,
+   "false_negative_rate": 1.0,
+   "class_distribution": {
+    "phishing": {
+     "Legitimate": 259
+    },
+    "legitimate": {}
+   }
+  },
+  "new": {
+   "n": 259,
+   "tp": 61,
+   "fp": 0,
+   "fn": 198,
+   "tn": 0,
+   "accuracy": 0.2355,
+   "precision": 1.0,
+   "recall": 0.2355,
+   "f1": 0.3813,
+   "false_positive_rate": null,
+   "false_negative_rate": 0.7645,
+   "class_distribution": {
+    "phishing": {
+     "Suspicious": 49,
+     "Unable to Determine": 192,
+     "Likely Phishing": 12,
+     "Likely Safe": 6
+    },
+    "legitimate": {}
+   },
+   "phishing_called_likely_safe_rate": 0.0232,
+   "phishing_called_likely_phishing_rate": 0.0463,
+   "legit_called_likely_phishing_rate": 0.0,
+   "abstention_rate": 0.7385
+  }
+ },
+ "challenge_urls (hand-built hard cases)": {
+  "original": {
+   "n": 123,
+   "tp": 0,
+   "fp": 0,
+   "fn": 60,
+   "tn": 63,
+   "accuracy": 0.5122,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0,
+   "false_negative_rate": 1.0,
+   "class_distribution": {
+    "phishing": {
+     "Legitimate": 60
+    },
+    "legitimate": {
+     "Legitimate": 63
+    }
+   }
+  },
+  "new": {
+   "n": 123,
+   "tp": 57,
+   "fp": 1,
+   "fn": 3,
+   "tn": 62,
+   "accuracy": 0.9675,
+   "precision": 0.9828,
+   "recall": 0.95,
+   "f1": 0.9661,
+   "false_positive_rate": 0.0159,
+   "false_negative_rate": 0.05,
+   "class_distribution": {
+    "phishing": {
+     "Likely Phishing": 51,
+     "Suspicious": 6,
+     "Unable to Determine": 3
+    },
+    "legitimate": {
+     "Likely Safe": 56,
+     "Unable to Determine": 6,
+     "Suspicious": 1
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.0,
+   "phishing_called_likely_phishing_rate": 0.85,
+   "legit_called_likely_phishing_rate": 0.0,
+   "abstention_rate": 0.0732
+  }
+ },
+ "challenge_urls_ambiguous": [
+  [
+   "https://email.mg.example-newsletter.com/c/eJxVjDsOwyAQRE9DbcHysQsXOUi0LAtGwsbCcP_QJM1o9N7M-GEsOQCx6DuwksAaAQcewMkptSSDlBKyN2L9y9jxeaXWEucm1Fbx7ufHdexFR9mYB-rI6f08Pjpx7ZU0xZqEWu_3xHf75ZqeDTnLIvsCO0otDQ",
+   "Suspicious",
+   "Legitimate"
+  ],
+  [
+   "https://unsubscribe.sendgrid.net/wf/unsubscribe?upn=abc&email=jane.doe@example.org",
+   "Suspicious",
+   "Legitimate"
+  ],
+  [
+   "https://bit.ly/3xYzAbC",
+   "Unable to Determine",
+   "Legitimate"
+  ],
+  [
+   "https://tinyurl.com/2p8w3x9k",
+   "Unable to Determine",
+   "Legitimate"
+  ],
+  [
+   "http://192.168.1.1/admin/login.asp",
+   "Likely Phishing",
+   "Legitimate"
+  ],
+  [
+   "https://www.oakridgedentalcare.com/",
+   "Unable to Determine",
+   "Legitimate"
+  ],
+  [
+   "https://riverbend-hoa.org/login",
+   "Suspicious",
+   "Legitimate"
+  ],
+  [
+   "https://bit.ly/paypal-verify-acct",
+   "Unable to Determine",
+   "Legitimate"
+  ]
+ ],
+ "challenge_messages (hand-built)": {
+  "original": {
+   "n": 49,
+   "tp": 3,
+   "fp": 0,
+   "fn": 24,
+   "tn": 22,
+   "accuracy": 0.5102,
+   "precision": 1.0,
+   "recall": 0.1111,
+   "f1": 0.2,
+   "false_positive_rate": 0.0,
+   "false_negative_rate": 0.8889,
+   "class_distribution": {
+    "phishing": {
+     "Phishing": 3,
+     "Legitimate": 24
+    },
+    "legitimate": {
+     "Legitimate": 22
+    }
+   }
+  },
+  "new": {
+   "n": 49,
+   "tp": 26,
+   "fp": 0,
+   "fn": 1,
+   "tn": 22,
+   "accuracy": 0.9796,
+   "precision": 1.0,
+   "recall": 0.963,
+   "f1": 0.9811,
+   "false_positive_rate": 0.0,
+   "false_negative_rate": 0.037,
+   "class_distribution": {
+    "phishing": {
+     "Likely Phishing": 17,
+     "Suspicious": 9,
+     "Unable to Determine": 1
+    },
+    "legitimate": {
+     "Likely Safe": 22
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.0,
+   "phishing_called_likely_phishing_rate": 0.6296,
+   "legit_called_likely_phishing_rate": 0.0,
+   "abstention_rate": 0.0204
+  }
+ },
+ "challenge_messages_ambiguous": [
+  [
+   "Hello, your appointment at Oakridge Dental Care is confirmed",
+   "Unable to Determine",
+   "Legitimate"
+  ],
+  [
+   "ok see you then",
+   "Unable to Determine",
+   "Legitimate"
+  ],
+  [
+   "Great talk yesterday! Slides are here: https://bit.ly/3xYzAb",
+   "Unable to Determine",
+   "Legitimate"
+  ]
+ ],
+ "email_corpus_test": {
+  "original": {
+   "n": 1750,
+   "tp": 73,
+   "fp": 1,
+   "fn": 627,
+   "tn": 1049,
+   "accuracy": 0.6411,
+   "precision": 0.9865,
+   "recall": 0.1043,
+   "f1": 0.1886,
+   "false_positive_rate": 0.001,
+   "false_negative_rate": 0.8957,
+   "class_distribution": {
+    "phishing": {
+     "Legitimate": 627,
+     "Suspicious": 46,
+     "Phishing": 27
+    },
+    "legitimate": {
+     "Legitimate": 1049,
+     "Phishing": 1
+    }
+   }
+  },
+  "new": {
+   "n": 1750,
+   "tp": 441,
+   "fp": 15,
+   "fn": 259,
+   "tn": 1035,
+   "accuracy": 0.8434,
+   "precision": 0.9671,
+   "recall": 0.63,
+   "f1": 0.763,
+   "false_positive_rate": 0.0143,
+   "false_negative_rate": 0.37,
+   "class_distribution": {
+    "phishing": {
+     "Likely Phishing": 138,
+     "Suspicious": 303,
+     "Unable to Determine": 68,
+     "Likely Safe": 191
+    },
+    "legitimate": {
+     "Unable to Determine": 383,
+     "Likely Safe": 652,
+     "Suspicious": 13,
+     "Likely Phishing": 2
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.2729,
+   "phishing_called_likely_phishing_rate": 0.1971,
+   "legit_called_likely_phishing_rate": 0.0019,
+   "abstention_rate": 0.2577
+  }
+ },
+ "email_corpus_test/CEAS_08_ham": {
+  "original": {
+   "n": 350,
+   "tp": 0,
+   "fp": 0,
+   "fn": 0,
+   "tn": 350,
+   "accuracy": 1.0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0,
+   "false_negative_rate": null,
+   "class_distribution": {
+    "phishing": {},
+    "legitimate": {
+     "Legitimate": 350
+    }
+   }
+  },
+  "new": {
+   "n": 350,
+   "tp": 0,
+   "fp": 6,
+   "fn": 0,
+   "tn": 344,
+   "accuracy": 0.9829,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0171,
+   "false_negative_rate": null,
+   "class_distribution": {
+    "phishing": {},
+    "legitimate": {
+     "Unable to Determine": 117,
+     "Suspicious": 5,
+     "Likely Safe": 227,
+     "Likely Phishing": 1
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.0,
+   "phishing_called_likely_phishing_rate": 0.0,
+   "legit_called_likely_phishing_rate": 0.0029,
+   "abstention_rate": 0.3333
+  }
+ },
+ "email_corpus_test/Enron_ham": {
+  "original": {
+   "n": 350,
+   "tp": 0,
+   "fp": 0,
+   "fn": 0,
+   "tn": 350,
+   "accuracy": 1.0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0,
+   "false_negative_rate": null,
+   "class_distribution": {
+    "phishing": {},
+    "legitimate": {
+     "Legitimate": 350
+    }
+   }
+  },
+  "new": {
+   "n": 350,
+   "tp": 0,
+   "fp": 1,
+   "fn": 0,
+   "tn": 349,
+   "accuracy": 0.9971,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0029,
+   "false_negative_rate": null,
+   "class_distribution": {
+    "phishing": {},
+    "legitimate": {
+     "Likely Safe": 349,
+     "Suspicious": 1
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.0,
+   "phishing_called_likely_phishing_rate": 0.0,
+   "legit_called_likely_phishing_rate": 0.0,
+   "abstention_rate": 0.0
+  }
+ },
+ "email_corpus_test/SpamAssasin_ham": {
+  "original": {
+   "n": 350,
+   "tp": 0,
+   "fp": 1,
+   "fn": 0,
+   "tn": 349,
+   "accuracy": 0.9971,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0029,
+   "false_negative_rate": null,
+   "class_distribution": {
+    "phishing": {},
+    "legitimate": {
+     "Legitimate": 349,
+     "Phishing": 1
+    }
+   }
+  },
+  "new": {
+   "n": 350,
+   "tp": 0,
+   "fp": 8,
+   "fn": 0,
+   "tn": 342,
+   "accuracy": 0.9771,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "false_positive_rate": 0.0229,
+   "false_negative_rate": null,
+   "class_distribution": {
+    "phishing": {},
+    "legitimate": {
+     "Unable to Determine": 266,
+     "Likely Safe": 76,
+     "Suspicious": 7,
+     "Likely Phishing": 1
+    }
+   },
+   "phishing_called_likely_safe_rate": 0.0,
+   "phishing_called_likely_phishing_rate": 0.0,
+   "legit_called_likely_phishing_rate": 0.0029,
+   "abstention_rate": 0.7578
+  }
+ },
+ "email_corpus_test/nazario_phishing": {
+  "original": {
+   "n": 700,
+   "tp": 73,
+   "fp": 0,
+   "fn": 627,
+   "tn": 0,
+   "accuracy": 0.1043,
+   "precision": 1.0,
+   "recall": 0.1043,
+   "f1": 0.1889,
+   "false_positive_rate": null,
+   "false_negative_rate": 0.8957,
+   "class_distribution": {
+    "phishing": {
+     "Legitimate": 627,
+     "Suspicious": 46,
+     "Phishing": 27
+    },
+    "legitimate": {}
+   }
+  },
+  "new": {
+   "n": 700,
+   "tp": 441,
+   "fp": 0,
+   "fn": 259,
+   "tn": 0,
+   "accuracy": 0.63,
+   "precision": 1.0,
+   "recall": 0.63,
+   "f1": 0.773,
+   "false_positive_rate": null,
+   "false_negative_rate": 0.37,
+   "class_distribution": {
+    "phishing": {
+     "Likely Phishing": 138,
+     "Suspicious": 303,
+     "Unable to Determine": 68,
+     "Likely Safe": 191
+    },
+    "legitimate": {}
+   },
+   "phishing_called_likely_safe_rate": 0.2729,
+   "phishing_called_likely_phishing_rate": 0.1971,
+   "legit_called_likely_phishing_rate": 0.0,
+   "abstention_rate": 0.097
+  }
+ }
+}

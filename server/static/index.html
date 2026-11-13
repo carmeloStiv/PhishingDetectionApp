@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Phishing Detector</title>
+  <meta name="description" content="Check a link, e-mail or message for phishing. Evidence-based verdicts with clear explanations.">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#/">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Phishing Detector</span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#/" data-route="analyze">Analyse</a>
+      <a href="#/history" data-route="history">History</a>
+      <a href="#/how-it-works" data-route="how-it-works">How it works</a>
+      <a href="#/learn" data-route="learn">Spotting phishing</a>
+      <a href="#/privacy" data-route="privacy">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap" tabindex="-1">
+
+  <!-- ============================ ANALYSE ============================ -->
+  <section id="view-analyze" class="view">
+    <div class="intro">
+      <h1>Is this link or message phishing?</h1>
+      <p>Paste a web address, an e-mail or a text message. You get a verdict, the evidence behind it and what to do next. Nothing you submit is opened in your browser.</p>
+    </div>
+
+    <form id="analyze-form" class="card submit-card" novalidate>
+      <fieldset class="segmented" aria-label="What are you checking?">
+        <label><input type="radio" name="mode" value="auto" checked><span>Auto-detect</span></label>
+        <label><input type="radio" name="mode" value="url"><span>Web address</span></label>
+        <label><input type="radio" name="mode" value="message"><span>E-mail or message</span></label>
+      </fieldset>
+      <label class="sr-only" for="content">Web address or message text</label>
+      <textarea id="content" name="content" rows="5" spellcheck="false" autocomplete="off" autocapitalize="off"
+                placeholder="https://example.com/login   or paste the full text of an e-mail (including the From and Subject lines if you have them)"
+                aria-describedby="input-hint input-error"></textarea>
+      <div class="form-row">
+        <p id="input-hint" class="hint"><span id="char-count">0</span> / <span id="char-max">50,000</span> characters. Do not paste passwords or card numbers.</p>
+        <div class="form-actions">
+          <button type="button" class="btn ghost" id="clear-btn">Clear</button>
+          <button type="submit" class="btn primary" id="submit-btn">Analyse</button>
+        </div>
+      </div>
+      <p id="input-error" class="error" role="alert" hidden></p>
+      <div class="examples">
+        <span>Try an example:</span>
+        <button type="button" class="link" data-example="url-phish">look-alike domain</button>
+        <button type="button" class="link" data-example="url-safe">genuine sign-in page</button>
+        <button type="button" class="link" data-example="msg-phish">phishing e-mail</button>
+        <button type="button" class="link" data-example="msg-safe">ordinary e-mail</button>
+      </div>
+    </form>
+
+    <div id="loading" class="card loading" role="status" aria-live="polite" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <div>
+        <strong>Analysing&hellip;</strong>
+        <p id="loading-step" class="hint">Checking address structure and impersonation rules</p>
+      </div>
+    </div>
+
+    <div id="result" aria-live="polite"></div>
+
+    <section id="recent" class="recent" hidden>
+      <div class="section-head">
+        <h2>Recent checks</h2>
+        <a href="#/history">View all</a>
+      </div>
+      <ul id="recent-list" class="history-list"></ul>
+    </section>
+  </section>
+
+  <!-- ============================ HISTORY ============================ -->
+  <section id="view-history" class="view" hidden>
+    <div class="section-head">
+      <h1>History</h1>
+      <button type="button" class="btn ghost" id="clear-history">Clear history</button>
+    </div>
+    <p class="hint">Your last 50 checks are kept in this browser only (local storage). They are not stored on the server and other people cannot see them.</p>
+    <ul id="history-list" class="history-list"></ul>
+    <p id="history-empty" class="empty" hidden>No checks yet. Results you run will appear here.</p>
+  </section>
+
+  <!-- ============================ HOW IT WORKS ============================ -->
+  <section id="view-how-it-works" class="view prose" hidden>
+    <h1>How a verdict is reached</h1>
+    <p>No single technique detects phishing reliably. This tool combines four kinds of evidence, keeps them visibly separate, and never lets a guess masquerade as a fact.</p>
+
+    <div class="grid two">
+      <div class="card">
+        <h3><span class="tag src-threat_intel">Threat intelligence</span></h3>
+        <p>Lookups against lists of addresses already confirmed as malicious (the OpenPhish feed, and Google Safe Browsing, VirusTotal and URLhaus when the operator has configured keys). A match is the strongest evidence there is. <strong>No match proves nothing</strong>: new phishing pages take hours to be listed.</p>
+      </div>
+      <div class="card">
+        <h3><span class="tag src-heuristic">Rule</span> <span class="tag src-page">Page content</span></h3>
+        <p>Deterministic checks for known tricks: misspelt and look-alike brand names, a real domain used as a decoy sub-domain, hidden destinations, raw IP addresses, password forms that send data elsewhere, and in messages the combination of who claims to write, what is asked and where the links go.</p>
+      </div>
+      <div class="card">
+        <h3><span class="tag src-ml">ML model</span></h3>
+        <p>A gradient-boosted model trained on tens of thousands of phishing and legitimate addresses scores how much an address <em>resembles</em> phishing. It is a statistical hint. On its own it can make a result &ldquo;Suspicious&rdquo;, never &ldquo;Likely Phishing&rdquo;, and it is ignored for well-known domains.</p>
+      </div>
+      <div class="card">
+        <h3><span class="tag src-reputation">Reputation</span></h3>
+        <p>Whether the domain is among the most-visited sites (Chrome UX Report), an official domain of a known organisation, and how long ago it was registered. Reputation supports a &ldquo;Likely Safe&rdquo; verdict but never overrides a threat-intelligence match.</p>
+      </div>
+    </div>
+
+    <h2>The risk score</h2>
+    <p>Each risk indicator has a fixed weight set by its severity: critical 0.85, high 0.55, medium 0.30, low 0.12. Weights are combined as <code>score = 100 &times; (1 &minus; &prod;(1 &minus; weight))</code>. Independent findings reinforce one another, one weak signal cannot produce a high score, and indicators describing the same fact are counted once. The score measures the <em>strength of the evidence found</em>. It is not the probability that something is malicious.</p>
+
+    <h2>The four verdicts</h2>
+    <dl class="verdicts">
+      <dt><span class="pill v-likely_phishing">Likely Phishing</span></dt>
+      <dd>A confirmed threat-intelligence match, or a score of <span data-th="lp">65</span> or more from several significant indicators.</dd>
+      <dt><span class="pill v-suspicious">Suspicious</span></dt>
+      <dd>Score between <span data-th="s">30</span> and <span data-th="lp1">64</span>. Warning signs exist, but not enough for a firm conclusion.</dd>
+      <dt><span class="pill v-likely_safe">Likely Safe</span></dt>
+      <dd>Score below <span data-th="s2">30</span> <strong>and</strong> positive evidence, such as an official or long-established domain, or clean threat-feed results together with an aged registration or an inspected page.</dd>
+      <dt><span class="pill v-unable_to_determine">Unable to Determine</span></dt>
+      <dd>Nothing alarming was found, but there is no positive evidence either, or the destination could not be examined. &ldquo;Nothing found&rdquo; is never reported as &ldquo;safe&rdquo;.</dd>
+    </dl>
+
+    <h2>Confidence</h2>
+    <p>Confidence describes how far the verdict can be relied on: how many independent sources were available and how close the score is to a boundary. A high-confidence &ldquo;Likely Safe&rdquo; and a low-confidence one are different results, and each report lists exactly which checks could not be run.</p>
+
+    <h2>Known limits</h2>
+    <ul>
+      <li>Pages are fetched as plain HTML. Scripts are never run, so content built in the browser, CAPTCHA walls and pages that show scanners something different are not seen.</li>
+      <li>A legitimate website that has been hacked can host phishing without any tell-tale sign in its address.</li>
+      <li>Message analysis understands English wording only; other languages rely on the link and sender checks.</li>
+      <li>A brand-new phishing domain with an innocuous name and no feed listing will be &ldquo;Unable to Determine&rdquo;, not flagged.</li>
+    </ul>
+    <h2>Service status</h2>
+    <div id="status-box" class="card"><p class="hint">Loading&hellip;</p></div>
+  </section>
+
+  <!-- ============================ LEARN ============================ -->
+  <section id="view-learn" class="view prose" hidden>
+    <h1>Spotting phishing yourself</h1>
+    <p>Tools help, but the checks below take seconds and catch most attempts.</p>
+    <div class="grid two">
+      <div class="card">
+        <h3>1. Read the address from right to left</h3>
+        <p>Only the part just before the first single slash matters. In <code>paypal.com.account-check.info/login</code> the site is <strong>account-check.info</strong>; &ldquo;paypal.com&rdquo; is decoration.</p>
+      </div>
+      <div class="card">
+        <h3>2. A padlock is not a seal of approval</h3>
+        <p>HTTPS means the connection is encrypted. Most phishing sites have valid certificates because they are free and automatic.</p>
+      </div>
+      <div class="card">
+        <h3>3. Notice manufactured pressure</h3>
+        <p>&ldquo;Your account will be closed in 24 hours&rdquo;, an unexpected parcel fee, a boss who needs gift cards right now. Urgency plus a request is the pattern to distrust.</p>
+      </div>
+      <div class="card">
+        <h3>4. Check who is really writing</h3>
+        <p>The display name is free text. Look at the address after the @. Banks do not write from Gmail, and replies should go back to the same organisation.</p>
+      </div>
+      <div class="card">
+        <h3>5. Go there yourself</h3>
+        <p>If a message says there is a problem with an account, open the app or type the address you already know. Never sign in through a link in a message you did not expect.</p>
+      </div>
+      <div class="card">
+        <h3>6. If you clicked or typed something</h3>
+        <p>Change that password on the real site and anywhere else you reuse it, turn on two-step verification, and call your bank if payment details were involved. Then report the message.</p>
+      </div>
+    </div>
+    <h2>Tricks this tool looks for</h2>
+    <table class="table">
+      <thead><tr><th>Trick</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Typosquatting</td><td><code>paypa1.com</code>, <code>arnazon.com</code> (rn for m)</td></tr>
+        <tr><td>Decoy sub-domain</td><td><code>apple.com.id-verify.support</code></td></tr>
+        <tr><td>Combosquatting</td><td><code>netflix-account-update.net</code></td></tr>
+        <tr><td>Homograph</td><td><code>p&#1072;ypal.com</code> with a Cyrillic &ldquo;&#1072;&rdquo;</td></tr>
+        <tr><td>Hidden destination</td><td>link shorteners, <code>trusted.com@evil.example</code>, redirect parameters</td></tr>
+        <tr><td>Abuse of free hosting</td><td>a &ldquo;bank login&rdquo; on a site builder or cloud-storage address</td></tr>
+        <tr><td>Callback scam</td><td>&ldquo;You were charged $399, call this number to cancel&rdquo;</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============================ PRIVACY ============================ -->
+  <section id="view-privacy" class="view prose" hidden>
+    <h1>Privacy</h1>
+    <p>Links and messages people check can be sensitive. This is exactly what happens to what you submit.</p>
+    <table class="table">
+      <thead><tr><th>Data</th><th>Where it goes</th><th>Kept for</th></tr></thead>
+      <tbody>
+        <tr><td>The address or message you submit</td><td>Processed in memory on the server to produce the report. Not written to a database or log.</td><td>Duration of the request</td></tr>
+        <tr><td>Web addresses (yours, or those found in a message)</td><td>May be sent to the threat-intelligence services the operator has enabled, and the page may be fetched once by the server. The service-status box under &ldquo;How it works&rdquo; shows what is enabled.</td><td>Short-lived cache of lookup results (15 minutes to 6 hours), in memory</td></tr>
+        <tr><td>Message text</td><td>Never sent to any third party.</td><td>Not stored</td></tr>
+        <tr><td>Your history</td><td>Saved in your own browser's local storage only.</td><td>Until you clear it (last 50 checks)</td></tr>
+        <tr><td>Feedback you choose to send</td><td>Verdict, score and your comment are stored on the server. The submitted content is included only if you tick the box.</td><td><span id="retention-days">180</span> days, then deleted automatically</td></tr>
+        <tr><td>Your IP address</td><td>Held in memory to limit abusive request rates.</td><td>About one minute</td></tr>
+      </tbody>
+    </table>
+    <p>There are no accounts, cookies, analytics or advertising trackers. Do not paste passwords, one-time codes or card numbers: they are never needed for an analysis.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Verdicts are evidence-based assessments, not guarantees. When in doubt, do not click. <span id="footer-version"></span></p>
+  </div>
+</footer>
+
+<template id="tpl-result">
+  <article class="card result">
+    <header class="verdict">
+      <div class="verdict-main">
+        <p class="eyebrow">Verdict</p>
+        <h2 class="verdict-label"></h2>
+        <p class="subject mono"></p>
+      </div>
+      <div class="score-box">
+        <p class="eyebrow">Risk score</p>
+        <p class="score"><span class="score-value"></span><span class="score-max">/100</span></p>
+        <div class="meter" role="img">
+          <div class="meter-fill"></div>
+          <span class="tick tick-s"></span><span class="tick tick-lp"></span>
+        </div>
+        <p class="confidence"></p>
+      </div>
+    </header>
+    <p class="summary"></p>
+    <ul class="conf-reasons hint"></ul>
+
+    <section class="block">
+      <h3>What to do</h3>
+      <ul class="recommendations"></ul>
+    </section>
+
+    <section class="block block-risk">
+      <h3>Risk indicators <span class="count"></span></h3>
+      <p class="hint">Select an indicator to see the evidence and why it matters.</p>
+      <div class="indicators risk-list"></div>
+    </section>
+
+    <section class="block block-other">
+      <h3>Supporting and neutral observations <span class="count"></span></h3>
+      <div class="indicators other-list"></div>
+    </section>
+
+    <section class="block block-links">
+      <h3>Links found in the message</h3>
+      <table class="table links-table"><thead><tr><th>Link (made unclickable)</th><th>Verdict</th><th>Score</th></tr></thead><tbody></tbody></table>
+    </section>
+
+    <section class="block">
+      <details class="checks">
+        <summary><h3>Checks performed <span class="count checks-count"></span></h3></summary>
+        <p class="hint">A check that could not run is missing information, not a clean result.</p>
+        <table class="table checks-table"><thead><tr><th>Check</th><th>Status</th><th>Detail</th></tr></thead><tbody></tbody></table>
+      </details>
+    </section>
+
+    <footer class="result-actions">
+      <div class="action-row">
+        <button type="button" class="btn ghost act-copy">Copy summary</button>
+        <button type="button" class="btn ghost act-download">Download report (JSON)</button>
+      </div>
+      <form class="feedback" novalidate>
+        <fieldset>
+          <legend>Was this verdict right?</legend>
+          <label><input type="radio" name="verdict" value="correct"> Yes</label>
+          <label><input type="radio" name="verdict" value="should_be_flagged"> No, this is phishing</label>
+          <label><input type="radio" name="verdict" value="should_not_be_flagged"> No, this is legitimate</label>
+        </fieldset>
+        <div class="feedback-more" hidden>
+          <label class="sr-only" for="fb-comment">Optional comment</label>
+          <input id="fb-comment" class="fb-comment" type="text" maxlength="1000" placeholder="Optional: what did we get wrong?">
+          <label class="consent"><input type="checkbox" class="fb-include"> Include what I submitted so it can be reviewed (stored for <span class="fb-days">180</span> days)</label>
+          <button type="submit" class="btn primary small">Send feedback</button>
+        </div>
+        <p class="fb-status hint" role="status"></p>
+      </form>
+    </footer>
+  </article>
+</template>
+
+<script src="/static/app.js" defer></script>
+</body>
+</html>
