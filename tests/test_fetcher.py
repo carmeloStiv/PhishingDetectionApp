@@ -121,3 +121,42 @@ def test_redirect_loops_are_bounded(local_server):
 def test_response_size_is_capped(local_server):
     res = _local(local_server, "/big", max_bytes=50_000)
     assert res.ok and res.truncated and len(res.body) <= 50_000
+
+
+@pytest.fixture(scope="module")
+def local_https_server(tmp_path_factory):
+    import shutil
+    import ssl
+    import subprocess
+
+    if not shutil.which("openssl"):
+        pytest.skip("openssl not available")
+    d = tmp_path_factory.mktemp("tls")
+    subprocess.run(["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "2", "-subj", "/CN=test-host.com",
+                    "-addext", "subjectAltName=DNS:test-host.com", "-keyout", str(d / "k.pem"), "-out", str(d / "c.pem")],
+                   check=True, capture_output=True)
+    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), _Handler)
+    ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    ctx.load_cert_chain(d / "c.pem", d / "k.pem")
+    srv.socket = ctx.wrap_socket(srv.socket, server_side=True)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    yield srv.server_address[1], str(d / "c.pem")
+    srv.shutdown()
+
+
+def test_https_fetch_reads_certificate(local_https_server):
+    """Regression: the certificate must be read before http.client closes the socket."""
+    import ssl
+
+    port, ca = local_https_server
+    res = safe_fetch(f"https://test-host.com:{port}/", resolver=fake_resolver("127.0.0.1"), allow_private=True,
+                     allowed_ports={port}, timeout=3, ssl_context=ssl.create_default_context(cafile=ca))
+    assert res.ok and res.status == 200 and "type=password" in res.body
+    assert res.cert and res.cert["subject"] == "test-host.com" and res.cert["age_days"] <= 2
+
+
+def test_untrusted_certificate_is_reported_not_raised(local_https_server):
+    port, _ = local_https_server
+    res = safe_fetch(f"https://test-host.com:{port}/", resolver=fake_resolver("127.0.0.1"), allow_private=True,
+                     allowed_ports={port}, timeout=3)
+    assert not res.ok and res.error == "tls_invalid_certificate"

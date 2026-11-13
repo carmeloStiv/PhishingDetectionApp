@@ -7,7 +7,13 @@ It uses exactly the same detection engine as the main web application
 the project: it adds the full interface, history, feedback, rate limiting and
 security headers, none of which Streamlit provides.
 """
+import os
+
 import streamlit as st
+
+# Shared Streamlit hosting gives no control over outbound network traffic, so the server does
+# not fetch submitted pages here unless the operator opts in (see docs/SECURITY.md).
+os.environ.setdefault("ENABLE_LIVE_FETCH", "false")
 
 from phishdetect.config import Settings
 from phishdetect.engine import Engine, InputError

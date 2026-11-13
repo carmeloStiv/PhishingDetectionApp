@@ -130,3 +130,11 @@ def test_provider_exception_does_not_break_analysis():
     r = engine([Boom("clean")], FakeAge(2000), ok_fetch()).analyse("https://www.wikipedia.org/")
     assert r["classification"] == "likely_safe"
     assert any(c["status"] == "error" for c in r["checks"])
+
+
+def test_fetcher_crash_does_not_break_analysis():
+    def fetch(url, **kw):
+        raise AttributeError("'NoneType' object has no attribute 'getpeercert'")
+    r = engine([FakeProvider("clean")], FakeAge(2000), fetch).analyse("https://www.roblox.com/")
+    assert r["classification"] == "likely_safe"
+    assert any(c["status"] == "error" and "Page retrieval" in c["name"] for c in r["checks"])

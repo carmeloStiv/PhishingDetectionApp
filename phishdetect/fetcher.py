@@ -86,10 +86,14 @@ class _PinnedHTTPSConnection(http.client.HTTPSConnection):
     def __init__(self, host, ip, port, timeout, context):
         super().__init__(host, port, timeout=timeout, context=context)
         self._ip = ip
+        self.peer_cert = None
 
     def connect(self):
         sock = socket.create_connection((self._ip, self.port), self.timeout)
         self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
+        # Read the certificate now: http.client drops the socket as soon as a
+        # "Connection: close" response has been received.
+        self.peer_cert = self.sock.getpeercert()
 
 
 def _cert_summary(cert: dict | None) -> dict | None:
@@ -108,8 +112,9 @@ def _cert_summary(cert: dict | None) -> dict | None:
 
 
 def safe_fetch(url: str, *, timeout: float = 8.0, max_bytes: int = 750_000, max_redirects: int = 5,
-               resolver=socket.getaddrinfo, allow_private: bool = False, allowed_ports=ALLOWED_PORTS) -> FetchResult:
-    """Fetch `url` under the controls above. `allow_private` exists only for tests."""
+               resolver=socket.getaddrinfo, allow_private: bool = False, allowed_ports=ALLOWED_PORTS,
+               ssl_context: ssl.SSLContext | None = None) -> FetchResult:
+    """Fetch `url` under the controls above. `allow_private` and `ssl_context` exist only for tests."""
     res = FetchResult()
     deadline = time.monotonic() + timeout * 2
     current = url
@@ -145,7 +150,7 @@ def safe_fetch(url: str, *, timeout: float = 8.0, max_bytes: int = 750_000, max_
         conn = None
         try:
             if p.scheme == "https":
-                ctx = ssl.create_default_context()
+                ctx = ssl_context or ssl.create_default_context()
                 conn = _PinnedHTTPSConnection(p.host_ascii, ip, port, min(timeout, remaining), ctx)
             else:
                 conn = _PinnedHTTPConnection(p.host_ascii, ip, port, min(timeout, remaining))
@@ -157,7 +162,7 @@ def safe_fetch(url: str, *, timeout: float = 8.0, max_bytes: int = 750_000, max_
             })
             resp = conn.getresponse()
             if p.scheme == "https":
-                res.cert = _cert_summary(conn.sock.getpeercert())
+                res.cert = _cert_summary(conn.peer_cert)
             res.chain.append((p.url, resp.status))
             res.status, res.final_url = resp.status, p.url
             location = resp.getheader("Location")

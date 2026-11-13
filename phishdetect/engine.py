@@ -2,6 +2,7 @@
 into a single explainable assessment."""
 from __future__ import annotations
 
+import logging
 import re
 import uuid
 from concurrent.futures import ThreadPoolExecutor
@@ -23,6 +24,7 @@ from .text_rules import LinkFacts, analyse_message, parse_message
 from .url_rules import analyse_url, embedded_destination, is_shortener
 from .urltools import ParsedURL, URLParseError, defang, extract_urls, looks_like_single_url, parse_url
 
+log = logging.getLogger(__name__)
 _SEV_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4, "positive": 5}
 
 
@@ -155,7 +157,12 @@ class Engine:
             a.checks.append(_check(name, "not_configured", "Live page retrieval is disabled by the operator."))
             return
         s = self.settings
-        fr = self.fetch(p.url, timeout=s.fetch_timeout, max_bytes=s.fetch_max_bytes, max_redirects=s.fetch_max_redirects)
+        try:
+            fr = self.fetch(p.url, timeout=s.fetch_timeout, max_bytes=s.fetch_max_bytes, max_redirects=s.fetch_max_redirects)
+        except Exception as exc:  # noqa: BLE001 - page retrieval must never break the analysis
+            log.exception("page retrieval failed unexpectedly")
+            a.checks.append(_check(name, "error", f"Could not retrieve the page ({type(exc).__name__})."))
+            return
         try:
             final = parse_url(fr.final_url) if fr.final_url else p
         except URLParseError:
@@ -186,7 +193,12 @@ class Engine:
             a.checks.append(_check(name, "error", f"The server answered HTTP {fr.status}; there was no page content to inspect "
                                                   "(phishing pages are often taken down, or hide from scanners)."))
         else:
-            a.indicators.extend(analyse_page(p, final, fr))
+            try:
+                a.indicators.extend(analyse_page(p, final, fr))
+            except Exception as exc:  # noqa: BLE001 - hostile HTML must never break the analysis
+                log.exception("page analysis failed unexpectedly")
+                a.checks.append(_check(name, "error", f"The page was retrieved but could not be analysed ({type(exc).__name__})."))
+                return
             a.page_ok = True
             hops = len(fr.chain) - 1
             a.checks.append(_check(name, "ok", f"Retrieved {defang(final.host)} (HTTP {fr.status}"
